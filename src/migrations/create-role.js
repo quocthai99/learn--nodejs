@@ -22,7 +22,7 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: "TIMESTAMP",
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
     });

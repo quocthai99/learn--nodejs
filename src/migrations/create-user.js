@@ -20,6 +20,7 @@ module.exports = {
       },
       role_code: {
         type: Sequelize.STRING,
+        defaultValue: "R3"
       },
       avatar: {
         type: Sequelize.STRING,
@@ -31,7 +32,7 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: "TIMESTAMP",
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
     });
