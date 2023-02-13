@@ -1,6 +1,6 @@
 import * as services from "../services";
 import { badRequest, internalServerError } from "../middlewares/handle_errors";
-import {title, image, available, price, category_code, bid, bids} from "../helpers/joi_schema"
+import {title, image, available, price, category_code, bid, bids, filename} from "../helpers/joi_schema"
 import joi from 'joi'
 const cloudinary = require('cloudinary').v2
 
@@ -53,12 +53,12 @@ export const updateBook = async (req, res) => {
 // DELETE
 export const deleteBook = async (req, res) => {
   try {
-    const { error } = joi.object({bids}).validate(req.query)
+    const { error } = joi.object({bids, filename}).validate(req.query)
     if (error) {
       return badRequest(error.details[0].message, res)
     }
 
-    const response = await services.deleteBook(req.query.bids);
+    const response = await services.deleteBook(req.query.bids, req.query.filename);
     return res.status(200).json(response);
     
   } catch (error) {
